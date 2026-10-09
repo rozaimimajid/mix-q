@@ -86,6 +86,23 @@ body.theme-dark .print-orientation,body.theme-dark .print-orientation label,body
  .grid{display:block!important}
  .grid>section.card{margin-bottom:12px}
 }
+
+/* Cetakan padat: elak halaman kosong akibat kad yang tidak boleh dipecahkan */
+@media print{
+ html,body{height:auto!important;overflow:visible!important}
+ main{display:block!important;margin:0!important;padding:0!important;max-width:none!important}
+ .grid{display:block!important;column-count:1!important}
+ .grid>section.card.print-included{display:block!important;break-before:auto!important;break-after:auto!important;break-inside:auto!important;page-break-inside:auto!important;margin:0 0 5mm!important;padding:12px!important;box-shadow:none!important;border-radius:6px!important}
+ .grid>section.card.print-excluded{display:none!important}
+ .card{break-inside:auto!important;page-break-inside:auto!important}
+ .card>.section-title{margin:-12px -12px 9px!important;padding:9px 12px!important;break-after:avoid!important;page-break-after:avoid!important}
+ .fields,.three,.kpis{break-inside:auto!important}
+ .fields>div,.three>div,.kpi,table tr,fieldset{break-inside:avoid!important;page-break-inside:avoid!important}
+ p{orphans:2;widows:2}
+ .scroll{overflow:visible!important}
+ table{width:100%!important}
+ @page{margin:10mm}
+}
 </style></head><body><header><div class="brand"><img class="brand-logo" src="mixq-logo.png" alt="Logo rasmi Mix-Q"><div><h1>Mix-Q</h1><small>Mixed-Use Development Quantifier · Plan • Allocate • Quantify • Check</small></div></div><nav class="view-toolbar no-print" aria-label="Tetapan paparan Mix-Q"><button type="button" id="viewDesktop" aria-pressed="true">▣ Desktop</button><button type="button" id="viewMobile" aria-pressed="false">▯ Mobile</button><button type="button" id="themeLight" aria-pressed="true">☀ Siang</button><button type="button" id="themeDark" aria-pressed="false">☾ Malam</button><button type="button" id="printTop">⎙ Cetak / PDF</button></nav></header><main><div class="grid">
 <section class="card wide"><h2 class="section-title">01 · Maklumat Projek</h2><div class="fields"><div><label>Nama projek</label><input id="project" value="Cadangan Pembangunan Bercampur"></div><div><label>Lokasi / PBT</label><input id="location" placeholder="Contoh: Kubang Pasu, Kedah"></div><div><label>Keluasan tapak</label><input id="site" type="number" min="0.01" step="any" value="20"></div><div><label>Unit keluasan</label><select id="unit"><option value="acre">Ekar</option><option value="ha">Hektar</option><option value="sqm">Meter persegi (m²)</option></select></div></div></section>
 <section class="card wide"><h2 class="section-title">02 · Mod Pembangunan</h2><div class="mode"><button data-mode="horizontal">Horizontal Mixed Development</button><button data-mode="vertical">Vertical Mixed-Use</button><button class="active" data-mode="hybrid">Hybrid Mixed Development</button></div><p class="muted" id="modeInfo"></p></section>
